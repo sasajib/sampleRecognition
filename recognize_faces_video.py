@@ -109,8 +109,13 @@ while True:
         if key == ord("q"):
             break
 
-    if vs.more() is not True:
+    print("processed a frame")
+
+    if vs.more() is False:
+        print("completed...")
         break
+
+    
 
 
 # do a bit of cleanup
