@@ -83,15 +83,16 @@ while True:
         left = int(left * r)
 
 		# draw the predicted face name on the image
-        cv2.rectangle(frame, (left, top), (right, bottom),(0, 255, 0), 2)
-        y = top - 15 if top - 15 > 15 else top + 15
-        cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+        # cv2.rectangle(frame, (left, top), (right, bottom),(0, 255, 0), 2)
+        # y = top - 15 if top - 15 > 15 else top + 15
+        # cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
 
     # if the video writer is None *AND* we are supposed to write
 	# the output video to disk initialize the writer
     if writer is None and args["output"] is not None:
         fourcc = cv2.VideoWriter_fourcc(*"MJPG")
         writer = cv2.VideoWriter(args["output"], fourcc, 20, (frame.shape[1], frame.shape[0]), True)
+        writer.write(frame)
 
 	# if the writer is not None, write the frame with recognized
 	# faces to disk
@@ -119,3 +120,4 @@ vs.stop()
 # check to see if the video writer point needs to be released
 if writer is not None:
     writer.release()
+writer.release()
